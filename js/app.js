@@ -39,16 +39,18 @@ $('input').on('keypress keydown blur', function() {
     }
 })
 $('#formSubmitBtn').on('click', function(){
-    const val1 = $('#surplus').val()
-    const val2 = $('#overall').val()
+    const val1 = parseFloat($('#surplus').val())
+    const val2 = parseFloat($('#overall').val())
     const result = calcFun(val1, val2)
+    $('.number').text(result)
     switchPage()
 })
 $('.recalc-btn').on('click', function(){
     switchPage()
 })
 const calcFun = function(val1, val2) {
-    return 1560
+    const result = Math.floor(val2 + val1/12)
+    return Math.min(2000, result)
 }
 const switchPage = function() {
     $('.page-1').toggleClass('hide')
